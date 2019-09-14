@@ -693,26 +693,26 @@ function initWorkFilter(){
     (function($){
      "use strict";
      
-     work_grid.imagesLoaded(function(){
-            work_grid.isotope({
-                itemSelector: '.mix',
-                layoutMode: 'fitRows',
-                filter: fselector
-            });
-        });
+        // work_grid.imagesLoaded(function(){
+        //     work_grid.isotope({
+        //         itemSelector: '.mix',
+        //         layoutMode: 'fitRows',
+        //         filter: fselector
+        //     });
+        // });
         
-        $(".filter").click(function(){
-            $(".filter").removeClass("active");
-            $(this).addClass("active");
-            fselector = $(this).attr('data-filter');
+        // $(".filter").click(function(){
+        //     $(".filter").removeClass("active");
+        //     $(this).addClass("active");
+        //     fselector = $(this).attr('data-filter');
             
-            work_grid.isotope({
-                itemSelector: '.mix',
-                layoutMode: 'fitRows',
-                filter: fselector
-            });
-            return false;
-        });
+        //     work_grid.isotope({
+        //         itemSelector: '.mix',
+        //         layoutMode: 'fitRows',
+        //         filter: fselector
+        //     });
+        //     return false;
+        // });
         
     })(jQuery);
 }
