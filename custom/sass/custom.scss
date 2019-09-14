@@ -1,0 +1,22 @@
+.nav-bar-compact.js-nbc-bg {
+    background: rgba(34,34,34, .2);
+}
+
+.bl-album-portfolio {
+    .work-item {
+        float: none;
+        &:hover {
+            .work-img::after {
+                background: transparent;
+            }
+        }
+        &:not(.flipster__item--current) {
+            .work-img::after {
+                background: rgba(20,20,20, .85);
+            }
+        }
+        @media only screen and (max-width: 480px) {
+            width: 75%;
+        }
+    }
+}
