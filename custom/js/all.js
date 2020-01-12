@@ -617,7 +617,7 @@ function initPageSliders(){
         $(".item-carousel").owlCarousel({
             autoPlay: 3000,
             stopOnHover: true,
-            items: 4,
+            items: 5,
             itemsDesktop: [1199, 4],
             itemsTabletSmall: [768, 2],
             itemsMobile: [480, 1],

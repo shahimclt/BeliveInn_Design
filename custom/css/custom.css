@@ -3,12 +3,21 @@
 
 .bl-album-portfolio .work-item {
   float: none; }
+  .bl-album-portfolio .work-item .work-img {
+    background-color: rgba(0, 0, 0, 0.05);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; }
   .bl-album-portfolio .work-item:hover .work-img::after {
     background: transparent; }
-  .bl-album-portfolio .work-item:not(.flipster__item--current) .work-img::after {
-    background: rgba(20, 20, 20, 0.85); }
+  .bl-album-portfolio .work-item:not(.flipster__item--current) .work-img {
+    opacity: 0.5; }
   @media only screen and (max-width: 480px) {
     .bl-album-portfolio .work-item {
       width: 75%; } }
+
+.bl-social-icon {
+  display: inline-block;
+  margin-left: 6px; }
 
 /*# sourceMappingURL=custom.css.map */

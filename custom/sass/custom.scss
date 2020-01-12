@@ -5,18 +5,33 @@
 .bl-album-portfolio {
     .work-item {
         float: none;
+        .work-img {
+            // background-image: url('../../images/portfolio/bg.png');
+            background-color: rgba(#000,0.05);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
         &:hover {
             .work-img::after {
                 background: transparent;
             }
         }
         &:not(.flipster__item--current) {
-            .work-img::after {
-                background: rgba(20,20,20, .85);
+            .work-img {
+                opacity: 0.5;
+                // &::after {
+                //     background: rgba(20,20,20, .85);
+                // }
             }
         }
         @media only screen and (max-width: 480px) {
             width: 75%;
         }
     }
+}
+
+.bl-social-icon {
+    display: inline-block;
+    margin-left: 6px;
 }
