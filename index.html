@@ -132,13 +132,12 @@
                     <div class="container relative">
                         <div class="row">
                             <div class="col-md-7 mb-sm-40">
-                                <div class="work-full-media mt-0">
-                                    <img src="images/portfolio/full-project-5.jpg" alt="" />
+                                <div class="work-full-media mt-0 3js-container" id="fbx_test" data-bl-model="">
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-4 col-lg-offset-1">
                                 <div class="text">
-                                    <h3 class="uppercase mb-30 mb-xxs-10 white">Hybrid</h3>
+                                    <h3 class="uppercase mb-30 mb-xxs-10 white">Missile Launcher</h3>
                                     <p>Phasellus facilisis mauris vel velit molestie pellentesque. Donec rutrum, tortor ut
                                         elementum venenatis, purus magna bibendum nisl, ut accumsan ipsum erat eu sapien.</p>
                                     <div class="mt-40">
@@ -705,6 +704,18 @@
 
         <script type="text/javascript" src="custom/plugins/flipster/jquery.flipster.min.js"></script>
         <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+
+        <script src="custom/plugins/three.js/three.js"></script>
+		<script src="custom/plugins/three.js/extras/WebGL.js"></script>
+        <script src="custom/plugins/three.js/extras/FBXLoader.js"></script>
+        <script src="custom/plugins/three.js/extras/TrackballControls.js"></script>
+        <script src="custom/plugins/three.js/extras/inflate.min.js"></script>
+        <script src="custom/plugins/three.js/extras/NURBSCurve.js"></script>
+        
+		<!-- https://github.com/mrdoob/stats.js -->
+        <script src="custom/plugins/stats.js/stats.min.js"></script>
+        
+
         <script type="text/javascript" src="custom/js/all.min.js"></script>
 
         <script type="text/javascript">
@@ -731,7 +742,7 @@
                 });
 
                 $(".mainproject-slider").owlCarousel({
-                    autoPlay:3000,
+                    autoPlay:false,
                     slideSpeed: 350,
                     singleItem: true,
                     autoHeight: true,
@@ -739,6 +750,130 @@
                     stopOnHover: true,
                     navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
                 });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var stats, scene, renderer, composer;
+                var camera;
+
+                if( !init() )	animate();
+
+                // init the scene
+                function init(){
+
+                    if ( THREE.WEBGL.isWebGLAvailable() ) {
+                        renderer = new THREE.WebGLRenderer({
+                            antialias		: true,	// to get smoother output
+                            preserveDrawingBuffer	: true,	// to allow screenshot,
+                            alpha: true
+                        });
+                        renderer.setClearColor( 0x000000, 0 ); // the default
+                        // renderer.setClearColor( 0xbbbbbb );
+                    }else{
+                        renderer	= new THREE.CanvasRenderer();
+                    }
+                    var $holder = $("#fbx_test");
+                    renderer.setSize( $holder.width(), $holder.width()/2 );
+                    document.getElementById('fbx_test').appendChild(renderer.domElement);
+
+                    // add Stats.js - https://github.com/mrdoob/stats.js
+                    // stats = new Stats();
+                    // stats.domElement.style.position	= 'absolute';
+                    // stats.domElement.style.bottom	= '0px';
+                    // document.body.appendChild( stats.domElement );
+
+                    // create a scene
+                    scene = new THREE.Scene();
+
+                    // put a camera in the scene
+                    camera	= new THREE.PerspectiveCamera(25, 2, 1, 10000 );
+                    camera.position.set(0, 100, 420);
+                    camera.lookAt(0, 50, 0);
+                    scene.add(camera);
+
+                    // here you add your objects
+                    var loader = new THREE.FBXLoader();
+                    loader.load( 'custom/3d_models/1.fbx', function ( object ) {
+                        mixer = new THREE.AnimationMixer( object );
+                        // var action = mixer.clipAction( object.animations[ 0 ] );
+                        // action.play();
+                        object.traverse( function ( child ) {
+                            if ( child.isMesh ) {
+                                child.castShadow = true;
+                                child.receiveShadow = true;
+                            }
+                        } );
+                        object.name = 'mainDisplay';
+                        scene.add( object );
+                    } , undefined, function ( e ) {
+                        console.error( e );
+                    } );
+                    // - you will most likely replace this part by your own
+                    var light	= new THREE.AmbientLight(0x808080);
+                    scene.add( light );
+
+                    function getSpotlight(x,y,z) {
+                        var spotLight = new THREE.SpotLight( 0xffffff );
+                        spotLight.position.set( x, y, z );
+                        spotLight.lookAt(0,50,0);
+
+                        spotLight.castShadow = true;
+                        return spotLight;
+                    }
+
+                    scene.add(getSpotlight(150,200,-50));
+                    scene.add(getSpotlight(-150,200,-50));
+                    scene.add(getSpotlight(0,300,0));
+                    scene.add(getSpotlight(150,0,-100));
+                    scene.add(getSpotlight(-150,0,-100));
+                }
+
+                // animation loop
+                function animate() {
+
+                    // loop on request animation loop
+                    // - it has to be at the begining of the function
+                    // - see details at http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+                    requestAnimationFrame( animate );
+
+                    // do the render
+                    render();
+
+                    // update stats
+                    stats.update();
+                }
+
+                // render the scene
+                function render() {
+                    // variable which is increase by Math.PI every seconds - usefull for animation
+                    var PIseconds	= Date.now() * Math.PI;
+
+                    // update camera controls
+                    // cameraControls.update();
+                    
+                    var displayObj = scene.getObjectByName('mainDisplay');
+                    if(displayObj!=undefined) {
+                        displayObj.rotation.y = PIseconds*0.0003;
+                    }
+
+                    // animation of all objects
+                    // scene.traverse(function(object3d, i){
+                    // 	if( object3d instanceof THREE.Mesh === false )	return
+                    // 	object3d.rotation.y = PIseconds*0.0003 * (i % 2 ? 1 : -1);
+                    // 	// object3d.rotation.x = PIseconds*0.0002 * (i % 2 ? 1 : -1);
+                    // })
+                    // animate PointLights
+                    // scene.traverse(function(object3d, idx){
+                    // 	if( object3d instanceof THREE.PointLight === false )	return
+                    // 	var angle	= 0.0005 * PIseconds * (idx % 2 ? 1 : -1) + idx * Math.PI/3;
+                    // 	object3d.position.set(Math.cos(angle)*3, Math.sin(angle*3)*2, Math.cos(angle*2)).normalize().multiplyScalar(2);
+                    // })
+
+                    // actually render the scene
+                    renderer.render( scene, camera );
+                }
             });
         </script>
     </body>
