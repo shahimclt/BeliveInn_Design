@@ -68,5 +68,10 @@
   100% {
     -webkit-transform: rotate(359deg);
             transform: rotate(359deg); } }
+.bl-render-canvas {
+  height: 400px;
+  width: 100%;
+  -ms-touch-action: none;
+      touch-action: none; }
 
 /*# sourceMappingURL=custom.css.map */

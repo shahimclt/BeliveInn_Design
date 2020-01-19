@@ -67,3 +67,9 @@
     0% { transform: rotate(0); }
     100% { transform: rotate(359deg); }
 }
+
+.bl-render-canvas {
+    height: 400px;
+    width: 100%;
+    touch-action: none;
+}
