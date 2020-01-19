@@ -2,23 +2,80 @@
 <html>
     <head>
         <title>Belive.inn</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
+        <meta name="description" content="Based in Jaipur, we offer all services from initial concepts through to finished product. Clients come to us because they need better products, more innovation, more ideas, fresh thinking or simply more design capacity. We strive to thoroughly understand your business needs and this, together with our unique and systematic approach to design and innovation, has proven very successful.">
         <meta charset="utf-8">
-        <meta name="author" content="Roman Kirichik">
+        <meta name="author" content="Mohammed Shahim A">
         <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <!-- Favicons -->
         
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/site.webmanifest">
-        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#40e0d0">
-        <link rel="shortcut icon" href="/favicon/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="faviconfavicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="faviconfavicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+        <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#40e0d0">
+        <link rel="shortcut icon" href="faviconfavicon.ico">
         <meta name="msapplication-TileColor" content="#40e0d0">
-        <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+        <meta name="msapplication-config" content="favicon/browserconfig.xml">
         <meta name="theme-color" content="#40e0d0">
+
+        <!-- Facebook Open Graph -->
+        <meta property="og:title" content="Beliveinn">
+        <meta property="og:site_name" content="Beliveinn">
+        <meta property="og:url" content="beliveinn.com">
+        <meta property="og:description" content="Based in Jaipur, we offer all services from initial concepts through to finished product. Clients come to us because they need better products, more innovation, more ideas, fresh thinking or simply mo">
+        <meta property="og:type" content="business.business">
+        <meta property="og:image" content="http://beliveinn.com/images/share/fb-og.jpg">
+
+        <meta property="business:contact_data:street_address" content="640-B, Rani Sati Nagar, Opp Kriti Apartments, Ajmer Road">
+        <meta property="business:contact_data:locality" content="Jaipur">
+        <meta property="business:contact_data:region" content="Rajasthan">
+        <meta property="business:contact_data:postal_code" content="302021">
+        <meta property="business:contact_data:country_name" content="India">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@BeliveinnL">
+        <meta name="twitter:title" content="BeliveInn">
+        <meta name="twitter:description" content="Based in Jaipur, we offer all services from initial concepts through to finished product. Clients come to us because they need better products, more innovation, more ideas, fresh thinking or simply mo">
+        <meta name="twitter:image" content="http://beliveinn.com/images/share/fb-og.jpg">
+
+        <!-- Json LD -->
+        <script type='application/ld+json'> 
+            {
+              "@context": "http://www.schema.org",
+              "@type": "ProfessionalService",
+              "name": "Beliveinn",
+              "url": "beliveinn.com",
+              "telephone": "+919929131159",
+              "sameAs": [
+                "beliveinn.in"
+              ],
+              "logo": "http://beliveinn.com/images/share/ld-logo.png",
+              "image": "http://beliveinn.com/images/share/fb-og-jpg",
+              "description": "Based in Jaipur, we offer all services from initial concepts through to finished product. Clients come to us because they need better products, more innovation, more ideas, fresh thinking or simply more design capacity. We strive to thoroughly understand your business needs and this, together with our unique and systematic approach to design and innovation, has proven very successful.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "640-B, Rani Sati Nagar, Opp Kriti Apartments, Ajmer Road",
+                "addressLocality": "Jaipur",
+                "addressRegion": "Rajasthan",
+                "postalCode": "302021",
+                "addressCountry": "India"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "26.886453",
+                "longitude": "75.741904"
+              },
+              "hasMap": "https://maps.google.com/maps?ll=26.88645,75.741921&z=17&t=m&hl=en-US&gl=US&mapclient=embed&cid=17231995943209238756",
+              "openingHours": "Mo, Tu, We, Th, Fr, Sa 10:00-19:30",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+919929131159",
+                "contactType": "office"
+              }
+            }
+        </script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -775,6 +832,30 @@
                     navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
                 });
             });
+        </script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAPKPW2ecrx60egN2IBI_fviIlIEZdqCH4",
+            authDomain: "beliveinn.firebaseapp.com",
+            databaseURL: "https://beliveinn.firebaseio.com",
+            projectId: "beliveinn",
+            storageBucket: "beliveinn.appspot.com",
+            messagingSenderId: "708579575167",
+            appId: "1:708579575167:web:d082afe6d62a82353a864a",
+            measurementId: "G-98EZMCVXDR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
         </script>
     </body>
 </html>
