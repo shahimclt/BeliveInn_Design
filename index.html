@@ -794,22 +794,42 @@
                     scene.add(camera);
 
                     // here you add your objects
-                    var loader = new THREE.FBXLoader();
-                    loader.load( 'custom/3d_models/1.fbx', function ( object ) {
-                        mixer = new THREE.AnimationMixer( object );
-                        // var action = mixer.clipAction( object.animations[ 0 ] );
-                        // action.play();
-                        object.traverse( function ( child ) {
+                    // var loader = new THREE.FBXLoader();
+                    // loader.load( 'custom/3d_models/t2.fbx', function ( object ) {
+                    //     mixer = new THREE.AnimationMixer( object );
+                    //     // var action = mixer.clipAction( object.animations[ 0 ] );
+                    //     // action.play();
+                    //     object.traverse( function ( child ) {
+                    //         if ( child.isMesh ) {
+                    //             child.castShadow = true;
+                    //             child.receiveShadow = true;
+                    //         }
+                    //     } );
+                    //     object.name = 'mainDisplay';
+                    //     scene.add( object );
+                    // } , undefined, function ( e ) {
+                    //     console.error( e );
+                    // } );
+
+                    var loader = new THREE.GLTFLoader();
+                    loader.load( 'custom/3d_models/t1.gltf', function ( gltf ) {
+
+                        gltf.scene.traverse( function ( child ) {
+
                             if ( child.isMesh ) {
-                                child.castShadow = true;
-                                child.receiveShadow = true;
+
+                                roughnessMipmapper.generateMipmaps( child.material );
+
                             }
+
                         } );
-                        object.name = 'mainDisplay';
-                        scene.add( object );
-                    } , undefined, function ( e ) {
-                        console.error( e );
+
+                        scene.add( gltf.scene );
+
+                        roughnessMipmapper.dispose();
+
                     } );
+
                     // - you will most likely replace this part by your own
                     var light	= new THREE.AmbientLight(0x808080);
                     scene.add( light );
