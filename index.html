@@ -885,11 +885,14 @@
                     // Create the scene space
                     var scene = new BABYLON.Scene(engine);
 
+                    scene.clearColor = new BABYLON.Color4(0,0,0,0);
+
                     // Add a camera to the scene and attach it to the canvas
-                    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+                    var camera = new BABYLON.ArcRotateCamera("camera1",0.5,1.4,300, new BABYLON.Vector3(0, 80, 10), scene);
 
                     // This targets the camera to scene origin
-                    camera.setTarget(BABYLON.Vector3.Zero());
+                    // camera.setTarget(new BABYLON.Vector3(0, 100, 0));
+                    // camera.setPosition(new BABYLON.Vector3(0, 0, 300));
 
                     // This attaches the camera to the canvas
                     camera.attachControl(canvas, true);
@@ -907,6 +910,12 @@
                         scene.activeCamera.attachControl(canvas, false);
                         scene.activeCamera.alpha += Math.PI; // camera +180°
                     });
+
+                    // var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 5, segments: 32}, scene);
+
+                    // // Move the sphere upward 1/2 its height
+                    // sphere.position.y = 80;
+                    // sphere.position.z = 10;
 
                     return scene;
                 };

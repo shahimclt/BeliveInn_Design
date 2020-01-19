@@ -72,6 +72,7 @@
   height: 400px;
   width: 100%;
   -ms-touch-action: none;
-      touch-action: none; }
+      touch-action: none;
+  background-color: transparent; }
 
 /*# sourceMappingURL=custom.css.map */
